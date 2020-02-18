@@ -1,0 +1,89 @@
+<ion-header>
+  <div>
+    <img object-fit: fill src="../assets/imgs/bg-coffee-break.png" />
+  </div>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button
+        class="ion-no-padding ion-no-margin"
+        (click)="goBack()"
+        color="ons-white"
+      >
+        <ion-icon
+          color="ons-white"
+          slot="start"
+          name="ios-arrow-back"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <h1 class="title" *ngIf="orderId == null">
+    Novo Pedido
+  </h1>
+  <h1 class="title" *ngIf="orderId != null">
+    Editar Pedido
+  </h1>
+</ion-header>
+<ion-content fullscreen>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>UA</ion-label>
+        <ion-select
+          multiple="false"
+          placeholder="Selecione uma UA"
+          [(ngModel)]="formData.ua"
+        >
+          <ion-select-option *ngFor="let item of uas$ | async" [value]="item.id"
+            >{{item.title || item.titulo}}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+      <ion-item (click)="selectRooms()">
+        <ion-label>Sala</ion-label>
+        <div class="multi-user"></div>
+        <ion-input
+          slot="end"
+          readonly
+          [(ngModel)]="formData.room"
+          class="ion-no-margin ion-no-padding"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Data</ion-label>
+        <ion-datetime
+          displayFormat="DD MMMM"
+          [min]="now"
+          [monthNames]="customMonthNames"
+          [(ngModel)]="formData.date"
+          color="coffee-break"
+        ></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Hora</ion-label>
+        <ion-datetime
+          displayFormat="HH:mm"
+          [min]="minDate()"
+          [(ngModel)]="formData.hour"
+        ></ion-datetime>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <app-amount-of-people-and-cup
+    [rangeItem]="formData.range"
+    (changeRange)="changeRange($event)"
+  >
+  </app-amount-of-people-and-cup>
+
+  <ion-button
+    class="ion-margin-top ion-text-capitalize"
+    expand="block"
+    fill="solid"
+    shape="round"
+    color="coffee-break"
+    (click)="save()"
+  >
+    Finalizar Pedido
+  </ion-button>
+</ion-content>

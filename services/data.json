@@ -1,0 +1,273 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "titulo": "Porçao de biscoito cream cracker",
+      "valor": 1.5,
+      "porcao": 100,
+      "imagem": "http://revistacrescer.globo.com/Revista/Crescer/foto/0,,21245935,00.jpg",
+      "categoria": {
+        "id": 1,
+        "titulo": "Biscoito",
+        "unidadeMedida": "g"
+      }
+    },
+    {
+      "id": 2,
+      "titulo": "Misto quente",
+      "valor": 7,
+      "porcao": 1,
+      "imagem": "https://img.itdg.com.br/tdg/images/blog/uploads/2018/05/misto-quente-perfeito-como-fazer-300x200.jpg",
+      "categoria": {
+        "id": 7,
+        "titulo": "Sanduíches",
+        "unidadeMedida": "unidade"
+      }
+    },
+    {
+      "id": 3,
+      "titulo": "Porção pão de quaijo",
+      "valor": 3.5,
+      "porcao": 100,
+      "imagem": "http://www.casadopaodequeijo.com.br/resource/images/produtos/pao-de-queijo-mobile.jpg",
+      "categoria": {
+        "id": 8,
+        "titulo": "Porções",
+        "unidadeMedida": "g"
+      }
+    },
+    {
+      "id": 4,
+      "titulo": "Sucos Naturais",
+      "valor": 10,
+      "porcao": 300,
+      "imagem": "https://www.unimedfortaleza.com.br/portaluploads/uploads/2016/02/suco-laranja-linhaca.jpg",
+      "categoria": {
+        "id": 2,
+        "titulo": "Bebidas",
+        "unidadeMedida": "ml"
+      }
+    },
+    {
+      "id": 5,
+      "titulo": "Chocolate quente",
+      "valor": 8,
+      "porcao": 300,
+      "imagem": "data:image/jpeg;base64,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",
+      "categoria": {
+        "id": 2,
+        "titulo": "Bebidas",
+        "unidadeMedida": "ml"
+      }
+    },
+    {
+      "id": 6,
+      "titulo": "Chocolate",
+      "valor": 10,
+      "porcao": 1,
+      "imagem": "https://assets.betalabs.net/fit-in/350x350/production/barradoce/item-images/e27bb6cf18b53dd5db31a1eb20a97bc9.jpg",
+      "categoria": {
+        "id": 3,
+        "titulo": "Doces",
+        "unidadeMedida": "unidade"
+      }
+    }
+  ],
+  "categorias": [
+    {
+      "id": 1,
+      "titulo": "Biscoito",
+      "unidadeMedida": "g"
+    },
+    {
+      "id": 2,
+      "titulo": "Bebida",
+      "unidadeMedida": "ml"
+    },
+    {
+      "id": 3,
+      "titulo": "Doces",
+      "unidadeMedida": "unidade"
+    },
+    {
+      "id": 4,
+      "titulo": "Sobremesas",
+      "unidadeMedida": "g"
+    },
+    {
+      "id": 5,
+      "titulo": "Salgados",
+      "unidadeMedida": "unidade"
+    },
+    {
+      "id": 6,
+      "titulo": "Combos",
+      "unidadeMedida": "unidade"
+    },
+    {
+      "id": 7,
+      "titulo": "Sanduíches",
+      "unidadeMedida": "unidade"
+    },
+    {
+      "id": 8,
+      "titulo": "Porções",
+      "unidadeMedida": "g"
+    }
+  ],
+  "pedidos": [
+    {
+      "ua": {
+        "id": 8414,
+        "titulo": 8862
+      },
+      "room": "101",
+      "date": "2020-01-28T15:33:03.191-03:00",
+      "hour": "2020-01-28T15:33:03.192-03:00",
+      "QtdCopos": 2,
+      "id": 1127,
+      "sala": {
+        "id": 7276,
+        "titulo": "Sala 3372"
+      },
+      "pd": {
+        "id": 219,
+        "titulo": "PD 2540"
+      },
+      "usuarioDestino": "User destination 2792",
+      "usuarioCozinha": "User Kitchen 7516",
+      "usuarioPedido": "User 8234",
+      "diretoria": "Director 179",
+      "statusPedido": {
+        "id": 7453,
+        "titulo": "Enviado ",
+        "fases": [
+          {
+            "index": 0,
+            "status": 6,
+            "icon": "panela",
+            "selected": true
+          },
+          {
+            "index": 1,
+            "status": 3,
+            "icon": "entrega",
+            "selected": true
+          },
+          {
+            "index": 2,
+            "status": 3,
+            "icon": "prato",
+            "selected": true
+          },
+          {
+            "index": 3,
+            "status": 2,
+            "icon": "",
+            "selected": true
+          }
+        ]
+      }
+    },
+    {
+      "ua": {
+        "id": 8525,
+        "titulo": 8168
+      },
+      "room": "101",
+      "date": "2020-01-28T15:39:23.924-03:00",
+      "hour": "2020-01-28T15:39:23.926-03:00",
+      "QtdCopos": 4,
+      "id": 2733,
+      "sala": {
+        "id": 7881,
+        "titulo": "Sala 3835"
+      },
+      "pd": {
+        "id": 1425,
+        "titulo": "PD 49"
+      },
+      "usuarioDestino": "User destination 1909",
+      "usuarioCozinha": "User Kitchen 9619",
+      "usuarioPedido": "User 188",
+      "diretoria": "Director 6718",
+      "statusPedido": {
+        "id": 7967,
+        "titulo": "Enviado ",
+        "fases": [
+          {
+            "index": 0,
+            "status": 6,
+            "icon": "panela",
+            "selected": true
+          },
+          {
+            "index": 1,
+            "status": 3,
+            "icon": "entrega",
+            "selected": true
+          },
+          {
+            "index": 2,
+            "status": 3,
+            "icon": "prato",
+            "selected": true
+          }
+        ]
+      }
+    },
+    {
+      "ua": {
+        "id": 3128,
+        "titulo": 1343
+      },
+      "room": "102",
+      "date": "2020-01-28T16:02:39.919-03:00",
+      "hour": "2020-01-28T16:02:39.920-03:00",
+      "QtdCopos": 3,
+      "id": 8092,
+      "sala": {
+        "id": 6466,
+        "titulo": "Sala 6447"
+      },
+      "pd": {
+        "id": 6844,
+        "titulo": "PD 5716"
+      },
+      "usuarioDestino": "User destination 2041",
+      "usuarioCozinha": "User Kitchen 1490",
+      "usuarioPedido": "User 7524",
+      "diretoria": "Director 3615",
+      "statusPedido": {
+        "id": 8385,
+        "titulo": "Enviado ",
+        "fases": [
+          {
+            "index": 0,
+            "status": 6,
+            "icon": "panela",
+            "selected": true
+          },
+          {
+            "index": 1,
+            "status": 3,
+            "icon": "entrega",
+            "selected": true
+          },
+          {
+            "index": 2,
+            "status": 3,
+            "icon": "prato",
+            "selected": true
+          },
+          {
+            "index": 3,
+            "status": 2,
+            "icon": "",
+            "selected": true
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+ion-item-divider {
+  padding: 10px 0;
+  ion-label {
+    text-align: center;
+    width: 100%;
+    font-size: 17px;
+    color: #63666a;
+  }
+}
+
+ion-item {
+  ion-label {
+    padding-left: 5%;
+  }
+}
+
+ion-item-divider:last-child {
+  border-top: 1px solid lightgray;
+  ion-label {
+    display: flex;
+    ion-button {
+      flex: 1;
+      height: 40px;
+      margin-right: 3%;
+      margin-left: 3%;
+    }
+  }
+}

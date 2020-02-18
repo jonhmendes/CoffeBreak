@@ -1,0 +1,78 @@
+<ion-card color="coffee-break">
+  <ion-card-content>
+    <ion-label>Quantidade de Pessoas</ion-label>
+    <ion-grid>
+      <ion-row>
+        <ion-col
+          *ngFor="let rule of rules"
+          (click)="range(rule.qtdPessoasMin, rule.qtdPessoasMax, rule.qtdCopos)"
+        >
+          <ion-avatar
+            [ngClass]="{
+              'color-avatar': inRange(rule.qtdPessoasMin, rule.qtdPessoasMax)
+            }"
+          >
+            <ion-icon
+              [color]="
+                inRange(rule.qtdPessoasMin, rule.qtdPessoasMax)
+                  ? 'coffee-break'
+                  : 'ons-white'
+              "
+              [name]="rule.icon"
+            ></ion-icon>
+          </ion-avatar>
+          <ion-label
+            *ngIf="rule.qtdPessoasMin !== rule.qtdPessoasMax"
+            color="ons-white"
+            >{{ rule.qtdPessoasMin }} à {{ rule.qtdPessoasMax }}</ion-label
+          >
+          <ion-label
+            *ngIf="rule.qtdPessoasMin === rule.qtdPessoasMax"
+            color="ons-white"
+            >acima de {{ rule.qtdPessoasMax }}</ion-label
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-label>Quantidade de Copos</ion-label>
+    <ion-label>
+      <h1>
+        <b>{{ rangeItem?.qtdCopos === 0 ? 30 : rangeItem?.qtdCopos }}</b>
+      </h1>
+    </ion-label>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="9">
+          <ion-range
+            [(ngModel)]="rangeItem.qtdCopos"
+            min="1"
+            [max]="99"
+            color="ons-white"
+            (ionChange)="onChange($event)"
+          >
+          </ion-range>
+        </ion-col>
+        <ion-col size="3" class="cup">
+          <img
+            *ngIf="this.rangeItem?.qtdPessoasMax >= 10"
+            src="../../../../../assets/imgs/copo_2.svg"
+          />
+          <img
+            *ngIf="this.rangeItem?.qtdPessoasMax >= 10"
+            src="../../../../../assets/imgs/copo_2.svg"
+          />
+          <img
+            *ngIf="this.rangeItem?.qtdPessoasMax >= 20"
+            src="../../../../../assets/imgs/copo_2.svg"
+          />
+          <img
+            *ngIf="this.rangeItem?.qtdPessoasMax >= 30"
+            src="../../../../../assets/imgs/copo_2.svg"
+          />
+          <img src="../../../../../assets/imgs/copo.svg" />
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

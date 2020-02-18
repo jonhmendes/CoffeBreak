@@ -1,0 +1,32 @@
+<ion-item-divider>
+  <ion-label>Selecione a sala</ion-label>
+</ion-item-divider>
+<ion-content>
+  <ion-list>
+    <ion-item lines="none" *ngFor="let room of rooms" (click)="onSelect(room)">
+      {{ room.title }}
+      <ion-icon
+        *ngIf="room.selected"
+        slot="end"
+        size="small"
+        color="coffee-break"
+        name="checkmark"
+      ></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-item-divider>
+  <ion-label>
+    <ion-button
+      fill="outline"
+      color="coffee-break"
+      shape="round"
+      (click)="cancel()"
+    >
+      Cancelar
+    </ion-button>
+    <ion-button color="coffee-break" shape="round" (click)="change()">
+      Ok
+    </ion-button>
+  </ion-label>
+</ion-item-divider>

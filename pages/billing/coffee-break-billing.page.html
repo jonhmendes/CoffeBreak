@@ -1,0 +1,120 @@
+<ion-header color="coffee-break">
+  <ion-toolbar color="coffee-break">
+    <ion-buttons slot="start">
+      <ion-button class="ion-text-capitalize ion-no-margin" (click)="goBack()">
+        <ion-icon
+          color="ons-white"
+          slot="start"
+          name="ios-arrow-back"
+          class="ion-no-padding ion-no-margin"
+        >
+        </ion-icon>
+        Meu ONS
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar
+    style="margin-top: -1px;"
+    class="sub-header"
+    color="coffee-break"
+  >
+    <h1 class="title">
+      Faturamento Coffee Break
+    </h1>
+  </ion-toolbar>
+  <ion-toolbar class="ion-text-center month-toolbar">
+    <ion-buttons slot="start">
+      <ion-button class="btn-month" size="small" (click)="minusOne()">
+        <ion-icon
+          color="coffee-break"
+          slot="icon-only"
+          mode="ios"
+          name="arrow-back"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-label class="month"
+      >{{this.month | date:'MMMM \'de\' yyyy'}}</ion-label
+    >
+    <ion-buttons slot="end">
+      <ion-button class="btn-month" (click)="plusOne()">
+        <ion-icon
+          color="coffee-break"
+          slot="icon-only"
+          mode="ios"
+          name="arrow-forward"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div class="badges">
+    <ion-badge
+      *ngFor="let item of ranges"
+      [ngClass]="{'unselected':  !item.selected}"
+      [color]="item.selected ? 'coffee-break' : 'ons-white'"
+      (click)="filter(item)"
+      >{{item.start |date:'dd/MM'}} à {{item.end |date:'dd/MM'}}</ion-badge
+    >
+  </div>
+</ion-header>
+<ion-content fullscreen class="ion-text-center">
+  <div *ngIf="isLoading" style="margin-top: 10px;">
+    <content-loader
+      *ngFor="let i of fakeList"
+      primaryColor="#b36924"
+      [primaryOpacity]="0.3"
+      [width]="500"
+      [height]="160"
+      [style]="{ 'margin-top': '5%' }"
+    >
+      <svg:rect x="25" y="0" rx="5" ry="5" width="450" height="160" />
+    </content-loader>
+  </div>
+  <div
+    class="ion-text-center ion-margin"
+    *ngIf="!isLoading && !originOrders.length"
+  >
+    <ion-label color="lanche">Não há pedidos neste mês</ion-label>
+  </div>
+  <ion-list>
+    <ion-card *ngFor="let order of orders$ | async">
+      <ion-card-content>
+        <ion-item-divider>
+          <ion-label>
+            <ion-avatar>
+              <img
+                src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1"
+                alt=""
+              />
+            </ion-avatar>
+            <h2>{{order.usuarioPedido}}</h2>
+            <ion-label>{{order.sala.title}}</ion-label>
+            <ion-label
+              >{{order.data1 | date:'dd \'de\' MMMM - HH:mm'}}</ion-label
+            >
+          </ion-label>
+        </ion-item-divider>
+        <ion-label class="quantity">
+          <div>
+            <ion-icon size="small" color="medium" name="pessoa-one"></ion-icon>
+            <ion-label>{{order.qtdPessoasMax}}</ion-label>
+            <ion-icon size="small" color="medium" name="copo"></ion-icon>
+            <ion-label>{{order.qtdCopos}}</ion-label>
+          </div>
+        </ion-label>
+        <ion-label class="price">{{order.total | currency:'R$ '}}</ion-label>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-toolbar class="footer" color="coffee-break">
+    <div>
+      <p>Total:</p>
+      <ion-label color="ons-white">{{total | currency:'R$ '}}</ion-label>
+    </div>
+
+    <div style="clear: left;"></div>
+    <ion-button fill="clear" (click)="sendReport()">
+      <ion-icon color="ons-white" slot="icon-only" name="download"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-content>

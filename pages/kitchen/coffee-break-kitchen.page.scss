@@ -1,0 +1,113 @@
+$completed-color: #97999b;
+$completed: #efefef;
+.title {
+  font-weight: bold;
+  margin-left: 5%;
+  margin-top: -23px;
+}
+
+ion-header {
+  ion-toolbar.sub-header {
+    height: 35px;
+  }
+}
+
+ion-card {
+  ion-card-content {
+    padding: 10px 10px 5px 10px;
+    text-align: left;
+    .refused {
+      display: inline-block;
+      margin-top: 2%;
+    }
+    ion-col {
+      padding: 0;
+      ion-button {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        ion-icon {
+          font-size: 64px;
+          padding-left: 0;
+          padding-right: 0 !important;
+        }
+      }
+    }
+
+    ion-item-divider {
+      padding-left: 0;
+      margin-bottom: 10px;
+      border-bottom-color: #fff;
+      & > ion-label:first-child {
+        width: 50%;
+        margin-top: 0;
+      }
+      ion-note:not(:first-child) {
+        clear: left;
+        margin-top: -18px;
+      }
+      ion-note {
+        color: #fff;
+        float: left;
+        ion-label {
+          display: inline-block;
+        }
+        ion-label:first-child {
+          margin-right: 2%;
+          margin-top: 13px;
+        }
+      }
+    }
+    ion-avatar {
+      float: left;
+      margin-right: 3%;
+      width: 59px;
+      height: 59px;
+      border: 1px solid #ffffff;
+    }
+  }
+
+  &.completed {
+    color: $completed-color;
+    background-color: $completed;
+    ion-item-divider {
+      border-bottom-color: lightgray !important;
+      background-color: $completed;
+      ion-label,
+      ion-note,
+      ion-icon {
+        color: $completed-color;
+      }
+    }
+  }
+  .dots {
+    margin-top: 2%;
+    ion-icon {
+      font-size: 10px;
+      padding: 0 2px;
+    }
+    ion-label {
+      margin-left: 3px;
+    }
+    ion-label,
+    ion-icon {
+      display: inline-block;
+    }
+  }
+}
+div:not(.loader) {
+  display: inline-flex;
+  ion-icon {
+    font-size: 31px;
+    margin: 0;
+  }
+  ion-label {
+    font-size: 19px;
+    margin: 0 25px 0 10px;
+  }
+}
+
+ion-content {
+  text-align: center;
+}

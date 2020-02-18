@@ -1,0 +1,39 @@
+<ion-grid slot="fixed" *ngIf="!isCompleted(order?.statusPedido?.titulo)">
+    <ion-row>
+      <ion-col size="3" *ngFor="let fase of order?.statusPedido?.fases">
+        <ion-row>
+          <ion-col size="12" class="ion-text-center">
+            <ion-button
+              fill="clear"
+              [ngClass]="{ 'active-button': fase.selected }"
+              (click)="onUpdateStatus({ order: order, fase: fase })"
+            >
+              <ion-icon
+                slot="icon-only"
+                [color]="!fase.selected ? 'ons-white' : 'coffee-break'"
+                [name]="fase.icon"
+              ></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12" class="ion-text-center">
+            <ion-label class="ion-text-wrap"
+              >{{
+                (status[fase.status] | enumText) !==
+                'Saindo para
+              entrega'
+                  ? 'Pedido '
+                  : ''
+              }}{{
+                (status[fase.status] | enumText) === 'Cozinha'
+                  ? 'Recebido '
+                  : (status[fase.status] | enumText)
+              }}</ion-label
+            >
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  

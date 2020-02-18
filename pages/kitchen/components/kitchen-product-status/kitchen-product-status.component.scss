@@ -1,0 +1,24 @@
+ion-col {
+  padding: 0;
+  ion-button {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    ion-icon {
+      font-size: 64px;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  ion-button.active-button {
+    background-color: white !important;
+  }
+}
+.action-buttons {
+  display: flex;
+  justify-content: space-around;
+  * {
+    flex: 1;
+  }
+}

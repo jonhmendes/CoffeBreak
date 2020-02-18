@@ -1,0 +1,182 @@
+<ion-header color="coffee-break">
+  <ion-toolbar color="coffee-break">
+    <ion-buttons slot="start">
+      <ion-button class="ion-text-capitalize ion-no-margin" (click)="goBack()">
+        <ion-icon
+          color="ons-white"
+          slot="start"
+          name="ios-arrow-back"
+          class="ion-no-padding ion-no-margin"
+        >
+        </ion-icon>
+        Meu ONS
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar
+    style="margin-top: -1px;"
+    class="sub-header"
+    color="coffee-break"
+  >
+    <h1 class="title">
+      Coffee Break
+    </h1>
+  </ion-toolbar>
+  <ion-card (click)="newRequest()">
+    <ion-card-content>
+      <ion-label>Novo Pedido</ion-label>
+      <div class="order-icons">
+        <ion-icon size="large" name="copo"></ion-icon>
+        <ion-icon name="bottle"></ion-icon>
+        <ion-icon mode="ios" name="arrow-forward"></ion-icon>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-row>
+    <ion-col class="ion-text-center">
+      <ion-label color="coffee-break">Pedidos realizados</ion-label>
+    </ion-col>
+  </ion-row>
+  <div *ngIf="isLoading">
+    <content-loader
+      *ngFor="let i of fakeList"
+      primaryColor="#b36924"
+      [primaryOpacity]="0.3"
+      [width]="500"
+      [height]="160"
+      [style]="{ 'margin-top': '5%' }"
+    >
+      <svg:rect x="25" y="0" rx="5" ry="5" width="450" height="160" />
+    </content-loader>
+  </div>
+  <ion-virtual-scroll [items]="orders$ | async">
+    <ion-item-sliding *virtualItem="let order; let i = index">
+      <ion-item class="ion-no-padding ion-no-margin" lines="none">
+        <ion-card
+          class="order-item"
+          [ngClass]="{'order-received': isCompleted(order.statusPedido.titulo)}"
+        >
+          <ion-card-content>
+            <ion-label>
+              <h3>{{order.ua.title}}</h3>
+              <p>{{order.sala.title}}</p>
+              <p>{{order.data1 | date:'dd \'de\' MMMM'}}</p>
+              <p>{{order.data1 | date:'HH:mm'}}</p>
+              <p color="ons-gray">
+                <ion-icon
+                  *ngFor="let status of order.statusPedido.fases"
+                  [color]="status.selected ? 'coffee-break' : 'coffe-light'"
+                  [name]="status.selected ? 'radio-button-on' : 'radio-button-off'"
+                ></ion-icon>
+                Pedido {{order.statusPedido.titulo === 'Cozinha' ? 'Recebido
+                Cozinha' : order.statusPedido.titulo}}
+              </p>
+              <hr />
+            </ion-label>
+            <ion-label
+              [ngClass]="{'gray': isCompleted(order.statusPedido.titulo)}"
+            >
+              <div class="value-icon">
+                <ion-icon
+                  [color]="isCompleted(order.statusPedido.titulo) ? 'medium' : 'ons-white'"
+                  name="user"
+                ></ion-icon>
+                <ion-label
+                  [ngClass]="{'gray': isCompleted(order.statusPedido.titulo)}"
+                  >{{order.qtdPessoasMax}}
+                </ion-label>
+              </div>
+              <div
+                class="value-icon"
+                [ngClass]="{'gray': isCompleted(order.statusPedido.titulo)}"
+              >
+                <ion-icon
+                  name="copo"
+                  [color]="isCompleted(order.statusPedido.titulo) ? 'medium' : 'ons-white'"
+                ></ion-icon>
+                <ion-label
+                  [ngClass]="{'gray': isCompleted(order.statusPedido.titulo)}"
+                  >{{order.qtdCopos}}</ion-label
+                >
+              </div>
+            </ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+
+      <ion-item-options
+        side="start"
+        *ngIf="!isCompleted(order.statusPedido.titulo)"
+      >
+        <ion-item-option
+          color="coffee-break"
+          expandable
+          (click)="cancelOrder(order.id)"
+        >
+          <ion-icon slot="start" name="ios-close"></ion-icon>
+          <p class="ion-text-wrap ion-text-capitalize ion-text-center white">
+            Cancelar <br />Pedido
+          </p>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item-options
+        side="end"
+        *ngIf="!isCompleted(order.statusPedido.titulo)"
+      >
+        <ion-item-option
+          color="coffe-light"
+          expandable
+          (click)="edit(order.id)"
+        >
+          <ion-icon
+            slot="start"
+            name="ios-create"
+            class="icon"
+            color="ons-white"
+          ></ion-icon>
+          <p class="ion-text-wrap ion-text-capitalize ion-text-center white">
+            Editar <br />Pedido
+          </p>
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item-options
+        side="end"
+        *ngIf="order.statusPedido.titulo === 'Recebido'"
+      >
+        <ion-item-option
+          color="coffe-light"
+          expandable
+          (click)="repeat(order.id)"
+        >
+          <ion-icon slot="start" name="repeat" color="ons-white"></ion-icon>
+          <p class="ion-text-wrap ion-text-capitalize ion-text-center white">
+            Repetir <br />Pedido
+          </p>
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item-options
+        side="end"
+        *ngIf="order.statusPedido.titulo === 'Entregue'"
+      >
+        <ion-item-option
+          color="success"
+          expandable
+          (click)="markReceived(order.id)"
+        >
+          <ion-icon slot="start" name="checkmark" color="ons-white"></ion-icon>
+          <p class="ion-text-wrap ion-text-capitalize ion-text-center white">
+            Pedido <br />recebido
+          </p>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-virtual-scroll>
+
+  <ion-virtual-scroll [items]="orders$ | async">
+    <ion-item-sliding> </ion-item-sliding>
+  </ion-virtual-scroll>
+</ion-content>
